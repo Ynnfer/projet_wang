@@ -1,0 +1,27 @@
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .fr { float: right; }
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<div class="example-wrapper">
+    <h1>Veuillez vous connecter à votre compte : </h1>
+<form>
+    <div class="form-group mt-4">
+        <label for="email">Email：</label>
+        <input type="email" class="form-control" id="email"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Mot de passe：</label>
+        <input type="password" class="form-control" id="password" />
+    </div>
+    <div class="m-5">
+    <button type="submit" class="btn btn-outline-success">Connexion</button>
+    <button type="submit" class="btn btn-outline-info fr">Inscription</button>
+    </div>
+</form>
+
+</div>
+{% endblock %}

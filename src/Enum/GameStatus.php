@@ -1,9 +1,9 @@
 <?php
 namespace App\Enum;
 
-class GameStatus
+enum GameStatus: string
 {
-    const RELEASED = 'released';
-    const UNRELEASED = 'unreleased';
-    const WITHDRAWN = 'withdrawn';
+    case Released = 'released';
+    case Unreleased = 'unreleased';
+    case Withdrawn = 'withdrawn';
 }

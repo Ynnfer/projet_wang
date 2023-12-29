@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231207073637 extends AbstractMigration
+final class Version20231221082011 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,16 +20,14 @@ final class Version20231207073637 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE game ADD detail_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE game ADD CONSTRAINT FK_232B318CD8D003BB FOREIGN KEY (detail_id) REFERENCES detail (id)');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_232B318CD8D003BB ON game (detail_id)');
+        $this->addSql('ALTER TABLE dlc CHANGE status status ENUM(\'released\', \'unreleased\', \'withdrawn\')');
+        $this->addSql('ALTER TABLE game ADD status VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE game DROP FOREIGN KEY FK_232B318CD8D003BB');
-        $this->addSql('DROP INDEX UNIQ_232B318CD8D003BB ON game');
-        $this->addSql('ALTER TABLE game DROP detail_id');
+        $this->addSql('ALTER TABLE dlc CHANGE status status VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE game DROP status');
     }
 }

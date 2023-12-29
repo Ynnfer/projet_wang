@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GameController extends AbstractController
+class DeveloperController extends AbstractController
 {
-    #[Route('/game', name: 'game_list')]
+    #[Route('/developer', name: 'developer_list')]
     public function index(): Response
     {
-        return $this->render('game/index.html.twig', [
-            'controller_name' => 'GameController',
+        return $this->render('developer/index.html.twig', [
+            'controller_name' => 'DeveloperController',
         ]);
     }
 }

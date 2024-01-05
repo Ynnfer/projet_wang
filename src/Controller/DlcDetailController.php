@@ -4,39 +4,37 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 
-use App\Repository\GameRepository;
-use App\Entity\Game;
-use App\Form\GameType;
+use App\Repository\DlcRepository;
+use App\Form\DlcType;
 
-class DetailController extends AbstractController
+class DlcDetailController extends AbstractController
 {
-    #[Route('/game/detail/{id}', name: 'game_detail')]
-    public function index($id, GameRepository $gameRepository, Request $request, EntityManagerInterface $em): Response
+    #[Route('/dlc/detail/{id}', name: 'dlc_detail')]
+    public function index($id, DlcRepository $dlcRepository, Request $request, EntityManagerInterface $em): Response
     {
-        $game = $gameRepository->find($id);
-        if (!$game) {
+        $dlc = $dlcRepository->find($id);
+        if (!$dlc) {
             return $this->render('notFound/index.html.twig');
         }
 
-        $form = $this->createForm(GameType::class, $game);
+        $form = $this->createForm(DlcType::class, $dlc);
 
         // Traiter les soumissions de formulaires
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($game);
+            $em->persist($dlc);
             $em->flush();
 
             $this->addFlash('success', 'Les informations du DLC ont été modifiées avec succès');
         }
 
         return $this->render('detail/index.html.twig', [
-            'game' => $game,
+            'dlc' => $dlc,
             'form' => $form->createView(),
         ]);
     }
-
 }

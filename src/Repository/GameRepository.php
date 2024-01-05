@@ -21,28 +21,41 @@ class GameRepository extends ServiceEntityRepository
         parent::__construct($registry, Game::class);
     }
 
-//    /**
-//     * @return Game[] Returns an array of Game objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('g.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function countByStatus()
+    {
+        return $this->createQueryBuilder('game')
+            ->select('game.status', 'COUNT(game.id) as count')
+            ->groupBy('game.status')
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Game
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findLatestGames($limit)
+    {
+        return $this->createQueryBuilder('game')
+            ->orderBy('game.id', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getStatusRatios()
+    {
+        $totalGames = $this->createQueryBuilder('game')
+            ->select('COUNT(game.id) as total')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $statusCounts = $this->countByStatus();
+
+        $statusRatios = [];
+        foreach ($statusCounts as $statusCount) {
+            $status = $statusCount['status'];
+            $count = $statusCount['count'];
+            $ratio = $totalGames > 0 ? ($count / $totalGames) * 100 : 0;
+            $statusRatios[$status] = $ratio;
+        }
+
+        return $statusRatios;
+    }
 }

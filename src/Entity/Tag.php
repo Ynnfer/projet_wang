@@ -40,7 +40,7 @@ class Tag
     /**
      * @return Collection|Game[]
      */
-    public function getGames(): Collection
+    public function getGames(): ?Collection
     {
         return $this->games;
     }
@@ -53,6 +53,12 @@ class Tag
 
         return $this;
     }
+    public function removeGame(Game $game): self
+    {
+        if ($this->games->contains($game)) {
+            $this->games->removeElement($game);
+        }
 
-    // public function 
+        return $this;
+    }
 }

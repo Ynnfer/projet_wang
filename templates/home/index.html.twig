@@ -1,13 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block body %}
-<style>
-
-</style>
-
-<div>
-    <h1>Welcome {{ controller_name }}! ✅</h1>
-</div>
+	<h1>Tableau de bord</h1>
+	<div class="mt-3">
+		<h2>Indicateurs :</h2>
+		<table class="table table-hover m-4">
+			<thead>
+				<tr>
+					<th scope="col">Etat</th>
+					<th scope="col">le nombre de jeux</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for status in gameStatusCounts %}
+					<tr>
+						<th>{{ status.status }}</th>
+						<td>{{ status.count }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="mt-3">
+		<h2>Les 5 dernières entités principales :</h2>
+		<table class="table table-hover m-4">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Développeur</th>
+					<th scope="col">Etat</th>
+					<th scope="col">Tags</th>
+					<th scope="col">DLCs</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for game in latestGames %}
+					<tr>
+						<th scope="row">{{game.id}}</th>
+						<td>{{game.name}}</td>
+						<td>{{game.developer.name}}</td>
+						<td>{{game.status}}</td>
+						<td>
+							{% for tag in game.tags %}
+								{{tag.name}}
+							{% endfor %}
+						</td>
+						<td>
+							{{game.dlcs | length}}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="mt-3">
+		<h2>Le taux de chaque 'status' :</h2>
+		<table class="table table-hover m-4">
+			<thead>
+				<tr>
+					<th scope="col">Etat</th>
+					<th scope="col">Taux</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for status, ratio in statusRatios %}
+					<tr>
+						<th>{{ status }}</th>
+						<td>{{ ratio | number_format(2) }} %</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}

@@ -20,7 +20,6 @@ class Developer
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: Game::class, mappedBy: 'developer')]
-    // #[ORM\JoinColumn(name:"game_id", referencedColumnName:"id")]
     private $games;
 
     public function getId(): ?int
@@ -28,7 +27,7 @@ class Developer
         return $this->id;
     }
 
-    public function getName(): ?int
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -41,15 +40,24 @@ class Developer
     /**
      * @return Collection|Game[]
      */
-    public function getGames(): Collection
+    public function getGames(): ?Collection
     {
         return $this->games;
     }
 
-    public function addGame(Game $game): self
+    public function addGame(?Game $game): self
     {
         if (!$this->games->contains($game)) {
             $this->games[] = $game;
+        }
+
+        return $this;
+    }
+    
+    public function removeGame(?Game $game): self
+    {
+        if ($this->games->contains($game)) {
+            $this->games->removeElement($game);
         }
 
         return $this;

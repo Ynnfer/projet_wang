@@ -23,14 +23,14 @@ class Detail
     #[ORM\JoinColumn(name:"dlc_id", referencedColumnName:"id")]
     private $dlc;
 
-    #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $description = null;
+    #[ORM\Column(type: 'text')]
+    private ?string $description;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    private ?string $image;
 
     #[ORM\Column(length: 255)]
-    private ?string $price = null;
+    private ?string $price;
 
     public function getId(): ?int
     {
@@ -70,26 +70,36 @@ class Detail
     /**
      * @return Game
      */
-    public function getGame(): Game
+    public function getGame(): ?Game
     {
         return $this->game;
     }
 
-    public function addGame(Game $game)
+    public function setGame(Game $game)
     {
         $this->game = $game;
+    }
+
+    public function removeGame()
+    {
+        $this->game = null;
     }
 
     /**
      * @return Dlc
      */
-    public function getDlc(): Dlc
+    public function getDlc(): ?Dlc
     {
         return $this->dlc;
     }
 
-    public function addDlc(Dlc $dlc)
+    public function setDlc(Dlc $dlc)
     {
         $this->dlc = $dlc;
+    }
+
+    public function removeDlc()
+    {
+        $this->dlc = null;
     }
 }

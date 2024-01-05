@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}GameList
+{% block title %}Liste des Dlcs
 {% endblock %}
 
 {% block body %}
@@ -20,9 +20,9 @@
 	{% endfor %}
 	<div class="example-wrapper">
 		<nav>
-			<h1 class="txt-center">Liste des jeux</h1>
-			<a href="{{ path('create_game') }}" style="text-decoration: none; float:right; margin: 5px 20px;">
-				<button class="btn btn-outline-success">Ajouter Jeu</button>
+			<h1 class="txt-center">Liste des Dlcs</h1>
+			<a href="{{ path('create_dlc') }}" style="text-decoration: none; float:right; margin: 5px 20px;">
+				<button class="btn btn-outline-success">Ajouter Dlc</button>
 			</a>
 		</nav>
 		<table class="table table-hover m-4">
@@ -30,33 +30,22 @@
 				<tr>
 					<th scope="col">Id</th>
 					<th scope="col">Nom</th>
-					<th scope="col">Développeur</th>
-					<th scope="col">Etat</th>
-					<th scope="col">Tags</th>
-					<th scope="col">DLCs</th>
+					<th scope="col">Jeu de base</th>
 					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for game in games %}
+				{% for dlc in dlcs %}
 					<tr>
-						<th scope="row">{{game.id}}</th>
-						<td>{{game.name}}</td>
-						<td>{{game.developer.name}}</td>
-						<td>{{game.status}}</td>
+						<th scope="row">{{dlc.id}}</th>
+						<td>{{dlc.name}}</td>
+						<td>{{dlc.getGameName()}}</td>
 						<td>
-							{% for tag in game.tags %}
-								{{tag.name}}
-							{% endfor %}
-						</td>
-						<td>
-							{{game.dlcs | length}}
-						</td>
-						<td>
-							<a href="{{ path('game_detail', {'id': game.id}) }}" style="text-decoration: none;">
+							<a href="{{ path('dlc_detail', {'id': dlc.id}) }}" style="text-decoration: none;">
 								<button class="btn btn-outline-primary">Detail</button>
 							</a>
-							<form action="{{ path('delete_game', {'id': game.id}) }}" method="post" style="display: inline;">
+
+							<form action="{{ path('delete_dlc', {'id': dlc.id}) }}" method="post" style="display: inline;">
 								<button type="submit" class="btn btn-outline-danger">Supprimer</button>
 							</form>
 						</td>

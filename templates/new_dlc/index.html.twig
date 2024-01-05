@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Créer un nouveau DLC
+{% endblock %}
+
 {% block body %}
+	<h1 class="text-center mt-4">Créer un nouveau DLC</h1>
+
 	{% for flashMessage in app.flashes('success') %}
 		<div class="position-fixed top-0 p-3" style="z-index: 5" id="flash-message">
 			<div class="alert alert-success" role="alert">
@@ -15,11 +20,11 @@
 			</div>
 		</div>
 	{% endfor %}
+
 	<div id="form" class="row g-3 m-2">
 		{{ form_start(form) }}
 		{{ form_end(form) }}
-
-		<a href="{{ path('game_list') }}" style="text-decoration: none;">
+		<a href="{{ path('dlc_list') }}" style="text-decoration: none;">
 			<button class="btn btn-outline-secondary" style="width:200px">
 				Retour
 			</button>

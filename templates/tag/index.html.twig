@@ -1,20 +1,56 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello TagController!{% endblock %}
-
+{% block title %}Liste des tags
+{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/tool/wamp64/www/projet_wang/src/Controller/TagController.php'|file_link(0) }}">src/Controller/TagController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/tool/wamp64/www/projet_wang/templates/tag/index.html.twig'|file_link(0) }}">templates/tag/index.html.twig</a></code></li>
-    </ul>
-</div>
+	{% for flashMessage in app.flashes('success') %}
+		<div class="position-fixed top-0 p-3" style="z-index: 5" id="flash-message">
+			<div class="alert alert-success" role="alert">
+				{{ flashMessage }}
+			</div>
+		</div>
+	{% endfor %}
+	{% for flashMessage in app.flashes('warning') %}
+		<div class="position-fixed top-0 p-3" style="z-index: 5" id="flash-message">
+			<div class="alert alert-danger" role="alert">
+				{{ flashMessage }}
+			</div>
+		</div>
+	{% endfor %}
+	<div class="example-wrapper">
+		<nav>
+			<h1 class="txt-center">Liste des tags</h1>
+			<a href="{{ path('create_tag') }}" style="text-decoration: none; float:right; margin: 5px 20px;">
+				<button class="btn btn-outline-success">Ajouter Tag</button>
+			</a>
+		</nav>
+		<table class="table table-hover m-3">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Jeux</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for tag in tags %}
+					<tr>
+						<th scope="row">{{tag.id}}</th>
+						<td>{{tag.name}}</td>
+						<td>
+							{{tag.games | length}}
+						</td>
+						<td>
+							<form action="{{ path('tag_detail', {'id': tag.id}) }}" method="post" style="display: inline;">
+								<button class="btn btn-outline-primary">Modifier</button>
+							</form>
+							<form action="{{ path('delete_tag', {'id': tag.id}) }}" method="post" style="display: inline;">
+								<button type="submit" class="btn btn-outline-danger">Supprimer</button>
+							</form>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}

@@ -18,22 +18,26 @@ class Game
     private ?int $id = 1;
 
     #[ORM\Column(length: 255)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[ORM\JoinColumn(nullable: false)]
     public $status;
 
-    #[ORM\OneToOne(targetEntity: Detail::class, mappedBy: "game")]
+    #[ORM\OneToOne(targetEntity: Detail::class, mappedBy: "game", cascade: ["persist"])]
+    #[ORM\JoinColumn(nullable: false)]
     private $detail;
 
-    #[ORM\ManyToOne(targetEntity:Developer::class, inversedBy: 'games')]
-    private $developer;
+    #[ORM\ManyToOne(targetEntity: Developer::class, inversedBy: 'games')]
+    #[ORM\JoinColumn(name: "developer_id", referencedColumnName: "id", nullable: false)]
+    private ?Developer $developer = null;
 
-    #[ORM\OneToMany(targetEntity:Dlc::class,  mappedBy: 'game')]
+    #[ORM\OneToMany(targetEntity: Dlc::class,  mappedBy: 'game')]
     private $dlcs;
 
-    #[ORM\ManyToMany(targetEntity:Tag::class, inversedBy: 'games')]
-    private $tags;  
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'games')]
+    private $tags;
 
     public function __construct()
     {
@@ -46,7 +50,7 @@ class Game
         return $this->id;
     }
 
-    public function getName(): ?int
+    public function getName(): string
     {
         return $this->name;
     }
@@ -56,7 +60,7 @@ class Game
         $this->name = $name;
     }
 
-    public function getGameStatus(): GameStatus
+    public function getGameStatus(): ?GameStatus
     {
         return new GameStatus($this->status);
     }
@@ -69,7 +73,7 @@ class Game
     /**
      * @return Collection|Tag[]
      */
-    public function getTags(): Collection
+    public function getTags(): ?Collection
     {
         return $this->tags;
     }
@@ -83,21 +87,53 @@ class Game
         return $this;
     }
 
-     /**
+    public function removeTag(Tag $tag): void
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+            $tag->removeGame($this);
+        }
+    }
+
+    public function removeAllTag(): self
+    {
+        $this->tags = null;
+
+        return $this;
+    }
+
+    /**
      * @return Collection|Dlc[]
      */
-    public function getDlcs(): Collection
+    public function getDlcs(): ?Collection
     {
-        return $this->tags;
+        return $this->dlcs;
     }
 
     public function addDlc(Dlc $dlc): self
     {
-    
+
         if (!$this->dlcs->contains($dlc)) {
             $this->dlcs[] = $dlc;
-            $dlc->addGame($this);
+            $dlc->setGame($this);
         }
+
+        return $this;
+    }
+
+    public function removeDlc(Dlc $dlc): self
+    {
+        if ($this->dlcs->contains($dlc)) {
+            $this->dlcs->removeElement($dlc);
+            $dlc->removeGame();
+        }
+
+        return $this;
+    }
+
+    public function removeAllDlc(): self
+    {
+        $this->dlcs = null;
 
         return $this;
     }
@@ -105,15 +141,22 @@ class Game
     /**
      * @return Developer
      */
-    public function getDeveloper(): Developer
+    public function getDeveloper(): ?Developer
     {
         return $this->developer;
     }
 
-    public function addDeveloper(Developer $developer): self
+    public function setDeveloper(?Developer $developer): self
     {
         $this->developer = $developer;
-        $developer->addGame($this);
+
+        return $this;
+    }
+
+    public function removeDeveloper(): self
+    {
+        $this->developer->removeGame($this);
+        $this->developer = null;
 
         return $this;
     }
@@ -121,15 +164,29 @@ class Game
     /**
      * @return Detail
      */
-    public function getDetail(): Detail
+    public function getDetail(): ?Detail
     {
         return $this->detail;
     }
 
-    public function addDetail(Detail $detail): self
+    public function setDetail(?Detail $detail): self
     {
         $this->detail = $detail;
-        $detail->addGame($this);
+
+        if ($detail !== null) {
+            $detail->setGame($this);
+        }
+
         return $this;
     }
+
+    public function removeDetail(): self
+    {
+        $this->detail->removeGame();
+        $this->detail = null;
+
+        return $this;
+    }
+
+    
 }

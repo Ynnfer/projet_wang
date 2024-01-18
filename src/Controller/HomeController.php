@@ -10,7 +10,7 @@ use App\Repository\GameRepository;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'home')]
+    #[Route('/', name: 'home')]
     public function index(GameRepository $gameRepository): Response
     {
         // Obtenir le nombre de jeux regroupés par statut
@@ -28,4 +28,5 @@ class HomeController extends AbstractController
             'statusRatios' => $statusRatios,
         ]);
     }
+ 
 }

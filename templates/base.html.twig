@@ -6,37 +6,36 @@
 			{% block title %}{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-		<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-		
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
+			{% block stylesheets %}
+		{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
+			{% block javascripts %}
+		{{ encore_entry_script_tags('app') }}
 		{% endblock %}
-		<style>
-			.txt-center {
-				text-align: center;
-			}
+			<style>
+.txt-center {
+	text-align: center;
+}
 
-			.m-3 {
-				margin: 3px;
-			}
-		</style>
+.m-3 {
+	margin: 3px;
+}
+	</style>
 		 <script>
-					// Réglez une minuterie pour désactiver automatiquement les messages flash
-					document.addEventListener('DOMContentLoaded', function() {
-					var flashMessage = document.getElementById('flash-message');
-					if (flashMessage) {
-					setTimeout(function() {
-						flashMessage.style.display = 'none';
-					}, 4000);
-					}});
-				</script>
+															// Réglez une minuterie pour désactiver automatiquement les messages flash
+															document.addEventListener('DOMContentLoaded', function() {
+															var flashMessage = document.getElementById('flash-message');
+															if (flashMessage) {
+															setTimeout(function() {
+																flashMessage.style.display = 'none';
+															}, 4000);
+															}});
+														</script>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg bg-body-tertiary mb-2">
@@ -59,26 +58,38 @@
 						<li class="nav-item">
 							<a class="nav-link" href="{{ path('tag_list') }}">{{ 'navbar_tag_list'|trans({}, 'accueil') }}</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_user_info') }}">{{ 'navbar_user_info'|trans({}, 'accueil') }}</a>
-						</li>
 					</ul>
 				</div>
-				<div class="dropdown">
-					<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-						{{ 'navbar_language'|trans({}, 'accueil') }}
-					</button>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" href="{{ url(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}">Français</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ url(app.request.attributes.get('_route'), {'_locale': 'en'}) }}">English</a>
-						</li>
-					</ul>
+				<div>
+					<div style="float:left">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+							{{ 'navbar_language'|trans({}, 'accueil') }}
+						</button>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" href="{{ url(app.request.attributes.get('_route'), {'_locale': 'fr'}) }}">Français</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ url(app.request.attributes.get('_route'), {'_locale': 'en'}) }}">English</a>
+							</li>
+						</ul>
+					</div>
+					<div style="float:right; margin-left: 10px; ">
+						<div class="row mt-2">
+							<div class="col-md-10" style="text-align: center;">
+							<p>{{ app.user.email }}</p>
+							</div>
+							<div class="col-md-2">
+							<a href="{{ path('app_logout') }}" style="float: left;">
+								<svg t="1705565926164" class="icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4219" width="25" height="25">
+									<path d="M463.121779 125.44199c0-33.995255 29.188786-61.538565 65.182558-61.538565 35.999912 0 65.172325 27.54331 65.172325 61.538565l0 342.323553c0 33.985022-29.172413 61.533448-65.172325 61.533448-35.994796 0-65.182558-27.548426-65.182558-61.533448L463.121779 125.44199 463.121779 125.44199zM512.005117 960.095551c-224.976938 0-407.359778-172.21527-407.359778-384.640334 0-163.541727 108.297518-302.880215 260.71079-358.520443L365.356129 353.862353c-78.180594 46.232974-130.354883 128.068817-130.354883 221.592864 0 144.455019 124.027781 261.551948 277.004895 261.551948 152.98837 0 276.999778-117.096928 276.999778-261.551948 0-79.858816-38.009685-151.2334-97.760534-199.215204L691.245384 230.454696c134.977157 62.657039 228.110301 193.397708 228.110301 345.011778C919.364895 787.880281 736.982054 960.095551 512.005117 960.095551L512.005117 960.095551zM512.005117 960.095551" fill="#424242" p-id="4220"></path>
+								</svg>
+							</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</nav>
-		{% block body %}{% endblock %}
+		</body>
 	</body>
-</html>
+</html></nav>{% block body %}{% endblock %}</body></html>

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -7,17 +6,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Entity\Game;
 use App\Form\GameType;
-use App\Repository\GameRepository;
 use App\Entity\Detail;
 
 class NewGameController extends AbstractController
 {
     #[Route('/game/create', name: 'create_game', methods: ['GET', 'POST'])]
-    public function create(Request $request, GameRepository $gameRepository, EntityManagerInterface $em): Response
+    public function create(Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
+        $trans = $translator->trans('game_c_success');
+
         $game = new Game();
         $detail = new Detail();
 
@@ -33,7 +34,7 @@ class NewGameController extends AbstractController
             $em->persist($game);
             $em->flush();
 
-            $this->addFlash('success', 'Le nouveau jeu a été créé!');
+            $this->addFlash('success', $trans);
             return $this->redirectToRoute('create_game');
         }
 

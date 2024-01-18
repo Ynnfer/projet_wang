@@ -1,0 +1,19 @@
+tag_d_success: "Le tag a été supprimé!"
+tag_d_warning: "Veuillez d'abord supprimer les données associées à ce tag dans le jeu."
+tag_m_success: "Les informations du tag ont été modifiées avec succès"
+tag_c_success: "Le nouveau tag a été créé!"
+
+game_c_success: "Le nouveau jeu a été créé !"
+game_d_success: "Le jeu a été supprimé!"
+
+dlc_d_success: "Le dlc a été supprimé!"
+dlc_d_warning: "Veuillez d'abord supprimer les données associées à ce DLC dans la table Game."
+dlc_m_success: 'Les informations du dlc ont été modifiées avec succès'
+dlc_c_success: 'Le nouveau dlc a été créé!'
+
+developer_d_success: 'Le développeur a été supprimé!'
+developer_d_warning: "Veuillez d'abord supprimer les données associées à ce développeur dans la table Game."
+developer_m_success: 'Les informations du développeur ont été modifiées avec succès'
+developer_c_success: 'Le nouveau développeur a été créé!'
+
+detail_m_success: 'Les informations ont été modifiées avec succès'

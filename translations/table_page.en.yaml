@@ -1,0 +1,41 @@
+supprimer_btn: "Delete"
+modifier_btn: "Alter"
+retour_btn: "Return"
+save_btn: "Save"
+name_label: "name"
+status_label: "status"
+developer_label: "developer"
+image_label: "Link to image"
+price_label: "price"
+game_label: "Basic game"
+
+
+tag_page_title: 'List of tags'
+tag_list_title: '
+	<th scope="col">Id</th>
+	<th scope="col">Name</th>
+	<th scope="col">Games</th>'
+newTag_button: 'Add Tag'
+newTag_page_title: 'Edit or add tags'
+
+game_page_title: "List of games"
+newGame_button: 'Add Game'
+newGame_page_title: 'Create a new game'
+
+dlc_page_title: "List of Dlcs"
+dlc_list_title: '
+		<th scope="col">Id</th>
+		<th scope="col">Name</th>
+		<th scope="col">Basic game</th>'
+newDlc_button: 'Add Dlc'
+newDlc_page_title: 'Create a new Dlc'
+
+developer_page_title: "List of developer"
+developer_list_title: '
+		<th scope="col">Id</th>
+		<th scope="col">Name</th>
+		<th scope="col">Games</th>'
+newDeveloper_button: 'Add Developer'
+newDeveloper_page_title: 'Edit or create a developer'
+
+

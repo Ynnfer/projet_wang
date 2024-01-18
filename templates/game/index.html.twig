@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}GameList
+{% block title %}{{ "game_page_title"|trans({}, 'table_page') }}
 {% endblock %}
 
 {% block body %}
@@ -20,20 +20,15 @@
 	{% endfor %}
 	<div class="example-wrapper">
 		<nav>
-			<h1 class="txt-center">Liste des jeux</h1>
+			<h1 class="txt-center">{{ "game_page_title"|trans({}, 'table_page') }}</h1>
 			<a href="{{ path('create_game') }}" style="text-decoration: none; float:right; margin: 5px 20px;">
-				<button class="btn btn-outline-success">Ajouter Jeu</button>
+				<button class="btn btn-outline-success">{{ "newGame_button"|trans({}, 'table_page') }}</button>
 			</a>
 		</nav>
 		<table class="table table-hover m-4">
 			<thead>
 				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">Nom</th>
-					<th scope="col">Développeur</th>
-					<th scope="col">Etat</th>
-					<th scope="col">Tags</th>
-					<th scope="col">DLCs</th>
+					{{ "game_list_title"|trans({}, 'accueil')|raw }}
 					<th scope="col"></th>
 				</tr>
 			</thead>
@@ -54,10 +49,10 @@
 						</td>
 						<td>
 							<a href="{{ path('game_detail', {'id': game.id}) }}" style="text-decoration: none;">
-								<button class="btn btn-outline-primary">Detail</button>
+								<button class="btn btn-outline-primary">{{ "modifier_btn"|trans({}, 'table_page') }}</button>
 							</a>
 							<form action="{{ path('delete_game', {'id': game.id}) }}" method="post" style="display: inline;">
-								<button type="submit" class="btn btn-outline-danger">Supprimer</button>
+								<button type="submit" class="btn btn-outline-danger">{{ "supprimer_btn"|trans({}, 'table_page') }}</button>
 							</form>
 						</td>
 					</tr>

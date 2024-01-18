@@ -1,0 +1,29 @@
+navbar_home: "Accueil"
+navbar_game_list: 'Liste des jeux'
+navbar_dlc_list: 'Liste des dlcs'
+navbar_developer_list: 'Liste des développeurs'
+navbar_tag_list: 'Liste des tags'
+navbar_user_info: 'Mon compte'
+navbar_language: "Langue"
+
+page_title: 'Tableau de bord'
+
+indicateurs: 'Indicateurs :'
+indicateurs_list_title: '
+	<th scope="col">Etat</th>
+	<th scope="col">Le nombre de jeux</th>'
+
+game_title: 'Les 5 dernières entités principales :'
+game_list_title: '
+	<th scope="col">Id</th>
+	<th scope="col">Name</th>
+	<th scope="col">Développeur</th>
+	<th scope="col">Etat</th>
+	<th scope="col">Tags</th>
+	<th scope="col">DLCs</th>'
+
+status_title: "Le taux de chaque 'status' :"
+status_table_title: '
+  <th scope="col">Etat</th>
+	<th scope="col">Taux</th>'
+

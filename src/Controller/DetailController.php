@@ -7,16 +7,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Repository\GameRepository;
-use App\Entity\Game;
 use App\Form\GameType;
 
 class DetailController extends AbstractController
 {
     #[Route('/game/detail/{id}', name: 'game_detail')]
-    public function index($id, GameRepository $gameRepository, Request $request, EntityManagerInterface $em): Response
+    public function index($id, GameRepository $gameRepository, Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
+        $trans = $translator->trans('detail_m_success');
+
         $game = $gameRepository->find($id);
         if (!$game) {
             return $this->render('notFound/index.html.twig');
@@ -30,7 +32,7 @@ class DetailController extends AbstractController
             $em->persist($game);
             $em->flush();
 
-            $this->addFlash('success', 'Les informations du DLC ont été modifiées avec succès');
+            $this->addFlash('success', $trans);
         }
 
         return $this->render('detail/index.html.twig', [

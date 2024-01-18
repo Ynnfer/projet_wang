@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 
 use App\Repository\DlcRepository;
 
@@ -22,19 +24,21 @@ class DlcController extends AbstractController
     }
 
     #[Route('/dlc/delete/{id}', name: 'delete_dlc', methods: ['POST'])]
-    public function delete($id, DlcRepository $dlcRepository, EntityManagerInterface $entityManager): Response
+    public function delete($id, DlcRepository $dlcRepository, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
     {
-        
+        $trans_s = $translator->trans('dlc_d_success');
+        $trans_w = $translator->trans('dlc_d_warning');
+
         $entity = $dlcRepository->find($id);
 
         if($entity->getGame()){
-            $this->addFlash('warning', "Veuillez d'abord supprimer les données associées à ce DLC dans la table Game.");
+            $this->addFlash('warning', $trans_w);
         }
         else{
             $entityManager->remove($entity);
             $entityManager->flush();
             
-            $this->addFlash('success', 'Le DLC a été supprimé!');
+            $this->addFlash('success', $trans_s);
         }
         return $this->redirectToRoute('dlc_list');
     }

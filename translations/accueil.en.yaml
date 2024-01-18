@@ -1,0 +1,28 @@
+navbar_home: "Home"
+navbar_game_list: 'List of games'
+navbar_dlc_list: 'List of dlcs'
+navbar_developer_list: 'List of Developers'
+navbar_tag_list: 'List of tags'
+navbar_user_info: 'My account'
+navbar_language: "Language"
+
+page_title: 'Dashboard'
+
+indicateurs: 'Indicators :'
+indicateurs_list_title: '
+	<th scope="col">State</th>
+	<th scope="col">The number of games</th>'
+
+game_title: 'The Last 5 Main Entities :'
+game_list_title: '
+<th scope="col">Id</th>
+<th scope="col">Name</th>
+<th scope="col">Developer</th>
+<th scope="col">State</th>
+<th scope="col">Tags</th>
+<th scope="col">DLCs</th>'
+
+status_title: 'The rate of each status :'
+status_table_title: '
+  <th scope="col">Statu</th>
+	<th scope="col">Rate</th>'

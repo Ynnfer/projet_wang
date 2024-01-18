@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Form\TagType;
 
@@ -24,26 +25,29 @@ class TagController extends AbstractController
     }
 
     #[Route('/tag/delete/{id}', name: 'delete_tag', methods: ['POST'])]
-    public function delete($id, TagRepository $tagRepository, EntityManagerInterface $em): Response
+    public function delete($id, TagRepository $tagRepository, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
-        
+        $trans_s = $translator->trans('tag_d_success');
+        $trans_w = $translator->trans('tag_d_warning');
+
         $entity = $tagRepository->find($id);
 
         if(count($entity->getGames())){
-            $this->addFlash('warning', "Veuillez d'abord supprimer les données associées à ce tag dans le jeu.");
+            $this->addFlash('warning', $trans_w);
         }
         else{
             $em->remove($entity);
             $em->flush();
             
-            $this->addFlash('success', 'Le tag a été supprimé!');
+            $this->addFlash('success', $trans_s);
         }
         return $this->redirectToRoute('tag_list');
     }
 
     #[Route('/tag/detail/{id}', name: 'tag_detail')]
-    public function detail($id, TagRepository $tagRepository, Request $request, EntityManagerInterface $em): Response
+    public function detail($id, TagRepository $tagRepository, Request $request, EntityManagerInterface $em,  TranslatorInterface $translator): Response
     {
+        $trans = $translator->trans('tag_m_success');
         $tag = $tagRepository->find($id);
         if (!$tag) {
             return $this->render('notFound/index.html.twig');
@@ -57,7 +61,7 @@ class TagController extends AbstractController
             $em->persist($tag);
             $em->flush();
 
-            $this->addFlash('success', 'Les informations du tag ont été modifiées avec succès');
+            $this->addFlash('success', $trans);
         }
 
         return $this->render('new_tag/index.html.twig', [

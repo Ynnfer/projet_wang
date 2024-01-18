@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Liste des développeur
+{% block title %}{{ "developer_page_title"|trans({}, 'table_page') }}
 {% endblock %}
 
 {% block body %}
@@ -19,18 +19,15 @@
 	{% endfor %}
 	<div class="example-wrapper">
 		<nav>
-			<h1 class="txt-center">Liste des développeur</h1>
+			<h1 class="txt-center">{{ "developer_page_title"|trans({}, 'table_page') }}</h1>
 			<a href="{{ path('create_developer') }}" style="text-decoration: none; float:right; margin: 5px 20px;">
-				<button class="btn btn-outline-success">Ajouter Développeur</button>
+				<button class="btn btn-outline-success">{{ "newDeveloper_button"|trans({}, 'table_page') }}</button>
 			</a>
 		</nav>
 		<table class="table table-hover m-3">
 			<thead>
 				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">Nom</th>
-					<th scope="col">Jeux</th>
-					<th scope="col"></th>
+					{{ "developer_list_title"|trans({}, 'table_page')|raw }}
 				</tr>
 			</thead>
 			<tbody>
@@ -43,10 +40,10 @@
 						</td>
 						<td>
 							<form action="{{ path('developer_detail', {'id': d.id}) }}" method="post" style="display: inline;">
-								<button class="btn btn-outline-primary">Modifier</button>
+								<button class="btn btn-outline-primary">{{ "modifier_btn"|trans({}, 'table_page') }}</button>
 							</form>
 							<form action="{{ path('delete_developer', {'id': d.id}) }}" method="post" style="display: inline;">
-								<button type="submit" class="btn btn-outline-danger">Supprimer</button>
+								<button type="submit" class="btn btn-outline-danger">{{ "supprimer_btn"|trans({}, 'table_page') }}</button>
 							</form>
 						</td>
 					</tr>

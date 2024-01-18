@@ -1,0 +1,39 @@
+supprimer_btn: "Supprimer"
+modifier_btn: "Modifier"
+retour_btn: "Retour"
+save_btn: "Valider"
+name_label: "nom"
+status_label: "état"
+developer_label: "développeur"
+image_label: "Lien vers l'image"
+price_label: "prix"
+game_label: "Jeu de base"
+
+
+tag_page_title: 'Liste des tags'
+tag_list_title: '
+	<th scope="col">Id</th>
+	<th scope="col">Nom</th>
+	<th scope="col">Jeux</th>'
+newTag_button: 'Ajouter Tag'
+newTag_page_title: 'Modifier ou ajouter de tag'
+
+game_page_title: "Liste des jeux"
+newGame_button: 'Ajouter Jeu'
+newGame_page_title: 'Créer un nouveau jeu'
+
+dlc_page_title: "Liste des Dlcs"
+dlc_list_title: '
+		<th scope="col">Id</th>
+		<th scope="col">Nom</th>
+		<th scope="col">Jeu de base</th>'
+newDlc_button: 'Ajouter Dlc'
+newDlc_page_title: 'Créer un nouveau Dlc'
+
+developer_page_title: "Liste des développeur"
+developer_list_title: '
+		<th scope="col">Id</th>
+		<th scope="col">Nom</th>
+		<th scope="col">Jeux</th>'
+newDeveloper_button: 'Ajouter Développeur'
+newDeveloper_page_title: 'Modifier ou créer un développeur'

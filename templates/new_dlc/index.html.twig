@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer un nouveau DLC
+{% block title %}{{ "newDlc_page_title"|trans({}, 'table_page') }}
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center mt-4">Créer un nouveau DLC</h1>
+	<h1 class="text-center mt-4">{{ "newDlc_page_title"|trans({}, 'table_page') }}</h1>
 
 	{% for flashMessage in app.flashes('success') %}
 		<div class="position-fixed top-0 p-3" style="z-index: 5" id="flash-message">
@@ -23,10 +23,16 @@
 
 	<div id="form" class="row g-3 m-2">
 		{{ form_start(form) }}
+		{{ form_row(form.name, {'label': 'name_label'|trans({}, 'table_page')}) }}
+		{{ form_row(form.game, {'label': 'game_label'|trans({}, 'table_page')}) }}
+		{{ form_row(form.detail.price, {'label': 'price_label'|trans({}, 'table_page')}) }}
+		{{ form_row(form.detail.image, {'label': 'image_label'|trans({}, 'table_page')}) }}
+		{{ form_row(form.detail.description) }}
+		{{ form_row(form.save, {'label': 'save_btn'|trans({}, 'table_page')}) }}
 		{{ form_end(form) }}
 		<a href="{{ path('dlc_list') }}" style="text-decoration: none;">
 			<button class="btn btn-outline-secondary" style="width:200px">
-				Retour
+				{{ "retour_btn"|trans({}, 'table_page') }}
 			</button>
 		</a>
 	</div>

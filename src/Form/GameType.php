@@ -28,9 +28,9 @@ class GameType extends AbstractType
             ])
             ->add('status', ChoiceType::class, [
                 'choices' => [
-                    'Libéré' => 'released',
-                    'Inédit' => 'unreleased',
-                    'Retiré' => 'withdrawn',
+                    'Released' => 'released',
+                    'Unreleased' => 'unreleased',
+                    'Withdrawn' => 'withdrawn',
                 ],
                 'label' => "Etat",
                 'attr' => [

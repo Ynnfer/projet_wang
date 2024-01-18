@@ -18,17 +18,15 @@
 	{% endfor %}
 	<div class="example-wrapper">
 		<nav>
-			<h1 class="txt-center">Liste des tags</h1>
+			<h1 class="txt-center">{{"tag_page_title"|trans({}, 'table_page') }}</h1>
 			<a href="{{ path('create_tag') }}" style="text-decoration: none; float:right; margin: 5px 20px;">
-				<button class="btn btn-outline-success">Ajouter Tag</button>
+				<button class="btn btn-outline-success">{{"newTag_button"|trans({}, 'table_page') }}</button>
 			</a>
 		</nav>
 		<table class="table table-hover m-3">
 			<thead>
 				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">Nom</th>
-					<th scope="col">Jeux</th>
+					{{ "tag_list_title"|trans({}, 'table_page')|raw }}
 					<th scope="col"></th>
 				</tr>
 			</thead>
@@ -42,10 +40,10 @@
 						</td>
 						<td>
 							<form action="{{ path('tag_detail', {'id': tag.id}) }}" method="post" style="display: inline;">
-								<button class="btn btn-outline-primary">Modifier</button>
+								<button class="btn btn-outline-primary">{{"modifier_btn"|trans({}, 'table_page') }}</button>
 							</form>
 							<form action="{{ path('delete_tag', {'id': tag.id}) }}" method="post" style="display: inline;">
-								<button type="submit" class="btn btn-outline-danger">Supprimer</button>
+								<button type="submit" class="btn btn-outline-danger">{{"supprimer_btn"|trans({}, 'table_page') }}</button>
 							</form>
 						</td>
 					</tr>

@@ -7,16 +7,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-use App\Repository\TagRepository;
 use App\Entity\Tag;
 use App\Form\TagType;
+
 
 class NewTagController extends AbstractController
 {
     #[Route('/tag/create', name: 'create_tag', methods: ['GET', 'POST'])]
-    public function index(Request $request, EntityManagerInterface $em): Response
+    public function index(Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
+        $trans = $translator->trans('tag_c_success');
+
         $tag = new Tag();
 
         $form = $this->createForm(TagType::class, $tag);
@@ -26,7 +29,7 @@ class NewTagController extends AbstractController
             $em->persist($tag);
             $em->flush();
 
-            $this->addFlash('success', 'Le nouveau tag a été créé!');
+            $this->addFlash('success', $trans);
             return $this->redirectToRoute('create_tag');
         }
 

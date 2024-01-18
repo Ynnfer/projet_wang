@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Repository\DlcRepository;
 use App\Form\DlcType;
@@ -14,8 +15,10 @@ use App\Form\DlcType;
 class DlcDetailController extends AbstractController
 {
     #[Route('/dlc/detail/{id}', name: 'dlc_detail')]
-    public function index($id, DlcRepository $dlcRepository, Request $request, EntityManagerInterface $em): Response
+    public function index($id, DlcRepository $dlcRepository, Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
+        $trans = $translator->trans('dlc_m_success');
+
         $dlc = $dlcRepository->find($id);
         if (!$dlc) {
             return $this->render('notFound/index.html.twig');
@@ -29,7 +32,7 @@ class DlcDetailController extends AbstractController
             $em->persist($dlc);
             $em->flush();
 
-            $this->addFlash('success', 'Les informations du DLC ont été modifiées avec succès');
+            $this->addFlash('success', $trans);
         }
 
         return $this->render('detail/index.html.twig', [

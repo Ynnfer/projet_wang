@@ -13,13 +13,13 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'home')]
     public function index(GameRepository $gameRepository): Response
     {
-        // 获取游戏数量按状态分组
+        // Obtenir le nombre de jeux regroupés par statut
         $gameStatusCounts = $gameRepository->countByStatus();
 
-        // 获取最新的5个游戏
+        // Obtenez les 5 derniers jeux
         $latestGames = $gameRepository->findLatestGames(5);
 
-        // 获取每个状态的比率
+        // Obtenir le ratio pour chaque état
         $statusRatios = $gameRepository->getStatusRatios();
 
         return $this->render('home/index.html.twig', [

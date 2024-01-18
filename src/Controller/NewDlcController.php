@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-use App\Repository\DlcRepository;
 use App\Form\DlcType;
 use App\Entity\Dlc;
 use App\Entity\Detail;
@@ -16,8 +16,10 @@ use App\Entity\Detail;
 class NewDlcController extends AbstractController
 {
     #[Route('/dlc/create', name: 'create_dlc', methods: ['GET', 'POST'])]
-    public function index(Request $request, EntityManagerInterface $em): Response
+    public function index(Request $request, EntityManagerInterface $em,TranslatorInterface $translator): Response
     {
+        $trans = $translator->trans('dlc_c_success');
+
         $dlc = new Dlc();
         $detail = new Detail();
 
@@ -33,7 +35,7 @@ class NewDlcController extends AbstractController
             $em->persist($dlc);
             $em->flush();
 
-            $this->addFlash('success', 'Le nouveau DLC a été créé!');
+            $this->addFlash('success', $trans);
             return $this->redirectToRoute('create_dlc');
         }
 

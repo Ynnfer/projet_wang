@@ -20,18 +20,15 @@
 	{% endfor %}
 	<div class="example-wrapper">
 		<nav>
-			<h1 class="txt-center">Liste des Dlcs</h1>
+			<h1 class="txt-center">{{ "dlc_page_title"|trans({}, 'table_page') }}</h1>
 			<a href="{{ path('create_dlc') }}" style="text-decoration: none; float:right; margin: 5px 20px;">
-				<button class="btn btn-outline-success">Ajouter Dlc</button>
+				<button class="btn btn-outline-success">{{ "newDlc_button"|trans({}, 'table_page') }}</button>
 			</a>
 		</nav>
 		<table class="table table-hover m-4">
 			<thead>
 				<tr>
-					<th scope="col">Id</th>
-					<th scope="col">Nom</th>
-					<th scope="col">Jeu de base</th>
-					<th scope="col"></th>
+				{{ "dlc_list_title"|trans({}, 'table_page')|raw }}
 				</tr>
 			</thead>
 			<tbody>
@@ -42,11 +39,10 @@
 						<td>{{dlc.getGameName()}}</td>
 						<td>
 							<a href="{{ path('dlc_detail', {'id': dlc.id}) }}" style="text-decoration: none;">
-								<button class="btn btn-outline-primary">Detail</button>
+								<button class="btn btn-outline-primary">{{ "modifier_btn"|trans({}, 'table_page') }}</button>
 							</a>
-
 							<form action="{{ path('delete_dlc', {'id': dlc.id}) }}" method="post" style="display: inline;">
-								<button type="submit" class="btn btn-outline-danger">Supprimer</button>
+								<button type="submit" class="btn btn-outline-danger">{{ "supprimer_btn"|trans({}, 'table_page') }}</button>
 							</form>
 						</td>
 					</tr>

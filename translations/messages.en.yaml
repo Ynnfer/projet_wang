@@ -1,0 +1,19 @@
+tag_d_success:  "The tag has been deleted! "
+tag_d_warning:  "Please delete the data associated with this tag in-game first."
+tag_m_success: 'Tag information has been successfully modified'
+tag_c_success: 'The new tag has been created!'
+
+game_c_success: 'The new game has been created!'
+game_d_success: 'The game has been deleted!'
+
+dlc_d_success: 'The dlc has been deleted!'
+dlc_d_warning: 'Please first delete the data associated with this DLC in the Game table.'
+dlc_m_success: 'Dlc information has been successfully modified'
+dlc_c_success: 'The new dlc has been created!'
+
+developer_d_success: 'The developer has been deleted!'
+developer_d_warning: 'Please first delete the data associated with this developer in the Game table.'
+developer_m_success: 'Developer information has been successfully modified'
+developer_c_success: 'The new dlc has been created!'
+
+detail_m_success: 'The information has been successfully modified'

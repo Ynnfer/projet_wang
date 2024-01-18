@@ -6,8 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-use App\Entity\Game;
 use App\Repository\GameRepository;
 
 class GameController extends AbstractController
@@ -23,8 +23,10 @@ class GameController extends AbstractController
     }
 
     #[Route('/game/delete/{id}', name: 'delete_game', methods: ['POST'])]
-    public function delete($id, GameRepository $gameRepository, EntityManagerInterface $entityManager): Response
+    public function delete($id, GameRepository $gameRepository, EntityManagerInterface $entityManager,TranslatorInterface $translator): Response
     {
+        $trans = $translator->trans('game_d_success');
+
         $entity = $gameRepository->find($id);
 
         if ($entity) {
@@ -36,7 +38,7 @@ class GameController extends AbstractController
             $entityManager->flush();
         }
 
-        $this->addFlash('success', 'Le jeu a été supprimé!');
+        $this->addFlash('success', $trans);
         return $this->redirectToRoute('game_list');
     }
 }

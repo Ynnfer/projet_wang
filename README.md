@@ -9,7 +9,7 @@
    php bin/console doctrine:migrations:migrate
    php bin/console doctrine:fixtures:load
 
-2. Objectif du projet :
+3. Objectif du projet :
    Description du projet :
      Ce projet vise à gérer les jeux vidéo et leurs informations associées.
    Stack technologique : Symfony, Bootstrap

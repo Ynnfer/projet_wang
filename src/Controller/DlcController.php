@@ -31,13 +31,12 @@ class DlcController extends AbstractController
 
         $entity = $dlcRepository->find($id);
 
-        if($entity->getGame()){
+        if ($entity->getGame()) {
             $this->addFlash('warning', $trans_w);
-        }
-        else{
+        } else {
             $entityManager->remove($entity);
             $entityManager->flush();
-            
+
             $this->addFlash('success', $trans_s);
         }
         return $this->redirectToRoute('dlc_list');

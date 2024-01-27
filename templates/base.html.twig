@@ -17,29 +17,30 @@
 			{% block javascripts %}
 		{{ encore_entry_script_tags('app') }}
 		{% endblock %}
-		<style>
-			.txt-center {
-				text-align: center;
-			}
+			<style>
+.txt-center {
+	text-align: center;
+}
 
-			.m-3 {
-				margin: 3px;
-			}
+.m-3 {
+	margin: 3px;
+}
 
-			html, body {
-				overflow-x: hidden;
-			}
-		</style>
-		<script>
-			// Réglez une minuterie pour désactiver automatiquement les messages flash
-			document.addEventListener('DOMContentLoaded', function() {
-				var flashMessage = document.getElementById('flash-message');
-				if (flashMessage) {
-					setTimeout(function() {
-						flashMessage.style.display = 'none';
-					}, 4000);
-			}});
-		</script>
+html,
+body {
+	overflow-x: hidden;
+}
+	</style>
+		 <script>
+					// Réglez une minuterie pour désactiver automatiquement les messages flash
+					document.addEventListener('DOMContentLoaded', function() {
+						var flashMessage = document.getElementById('flash-message');
+						if (flashMessage) {
+							setTimeout(function() {
+								flashMessage.style.display = 'none';
+							}, 4000);
+					}});
+				</script>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg bg-body-tertiary mb-2">

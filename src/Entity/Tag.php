@@ -19,8 +19,8 @@ class Tag
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity:Game::class, mappedBy: 'tags')]
-    private $games; 
+    #[ORM\ManyToMany(targetEntity: Game::class, mappedBy: 'tags')]
+    private $games;
 
     public function getId(): ?int
     {
@@ -44,7 +44,7 @@ class Tag
     {
         return $this->games;
     }
-    
+
     public function addGame(Game $game): self
     {
         if (!$this->games->contains($game)) {

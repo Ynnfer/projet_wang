@@ -43,7 +43,7 @@ class DeveloperController extends AbstractController
         return $this->redirectToRoute('developer_list');
     }
 
-    
+
     #[Route('/developer/detail/{id}', name: 'developer_detail')]
     public function detail($id, DeveloperRepository $developerRepository, Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {

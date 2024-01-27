@@ -97,7 +97,10 @@ class Game
 
     public function removeAllTag(): self
     {
-        $this->tags = null;
+        foreach ($this->tags as $tag) {
+            $tag->removeGame($this);
+        }
+        $this->tags = [];
 
         return $this;
     }
@@ -133,8 +136,10 @@ class Game
 
     public function removeAllDlc(): self
     {
-        $this->dlcs = null;
-
+        foreach ($this->dlcs as $dlc) {
+            $dlc->removeGame($this);
+        }
+        $this->dlcs = [];
         return $this;
     }
 
@@ -187,6 +192,4 @@ class Game
 
         return $this;
     }
-
-    
 }

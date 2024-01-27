@@ -16,11 +16,11 @@ class Detail
     private ?int $id = 1;
 
     #[ORM\OneToOne(targetEntity: Game::class,  inversedBy: "detail")]
-    #[ORM\JoinColumn(name:"game_id", referencedColumnName:"id")]
+    #[ORM\JoinColumn(name: "game_id", referencedColumnName: "id")]
     private $game;
-    
+
     #[ORM\OneToOne(targetEntity: Dlc::class,  inversedBy: "detail")]
-    #[ORM\JoinColumn(name:"dlc_id", referencedColumnName:"id")]
+    #[ORM\JoinColumn(name: "dlc_id", referencedColumnName: "id")]
     private $dlc;
 
     #[ORM\Column(type: 'text')]

@@ -15,18 +15,18 @@ use App\Entity\Developer;
 use App\Entity\Dlc;
 
 
-class GameFixtures extends Fixture implements DependentFixtureInterface 
+class GameFixtures extends Fixture implements DependentFixtureInterface
 {
 
     public function load(ObjectManager $manager): void
     {
         // Obtient la référence de l’objet d’étiquette que vous avez créée précédemment
-        $tagRPG = $this->getReference(TagFixtures::TAG_REFERENCE."_RPG");
-        $tagAction = $this->getReference(TagFixtures::TAG_REFERENCE."_Action");
-        $tagAventure = $this->getReference(TagFixtures::TAG_REFERENCE."_Aventure");
-        $tagCourse = $this->getReference(TagFixtures::TAG_REFERENCE."_Course");
-        $tagSimulation = $this->getReference(TagFixtures::TAG_REFERENCE."_Simulation");
-        $tagStrategie = $this->getReference(TagFixtures::TAG_REFERENCE."_Strategie");
+        $tagRPG = $this->getReference(TagFixtures::TAG_REFERENCE . "_RPG");
+        $tagAction = $this->getReference(TagFixtures::TAG_REFERENCE . "_Action");
+        $tagAventure = $this->getReference(TagFixtures::TAG_REFERENCE . "_Aventure");
+        $tagCourse = $this->getReference(TagFixtures::TAG_REFERENCE . "_Course");
+        $tagSimulation = $this->getReference(TagFixtures::TAG_REFERENCE . "_Simulation");
+        $tagStrategie = $this->getReference(TagFixtures::TAG_REFERENCE . "_Strategie");
 
         // 
         $dlc1 = $this->getReference(DlcFixtures::DLC_REFERENCE_1);
@@ -34,11 +34,11 @@ class GameFixtures extends Fixture implements DependentFixtureInterface
         $dlc3 = $this->getReference(DlcFixtures::DLC_REFERENCE_3);
         $dlc4 = $this->getReference(DlcFixtures::DLC_REFERENCE_4);
 
-        $developer1 = $this->getReference(DeveloperFixtures::DEVELOPER_REFERENCE."_1");
-        $developer2 = $this->getReference(DeveloperFixtures::DEVELOPER_REFERENCE."_2");
-        $developer3 = $this->getReference(DeveloperFixtures::DEVELOPER_REFERENCE."_3");
-        $developer4 = $this->getReference(DeveloperFixtures::DEVELOPER_REFERENCE."_4");
-        $developer5 = $this->getReference(DeveloperFixtures::DEVELOPER_REFERENCE."_5");
+        $developer1 = $this->getReference(DeveloperFixtures::DEVELOPER_REFERENCE . "_1");
+        $developer2 = $this->getReference(DeveloperFixtures::DEVELOPER_REFERENCE . "_2");
+        $developer3 = $this->getReference(DeveloperFixtures::DEVELOPER_REFERENCE . "_3");
+        $developer4 = $this->getReference(DeveloperFixtures::DEVELOPER_REFERENCE . "_4");
+        $developer5 = $this->getReference(DeveloperFixtures::DEVELOPER_REFERENCE . "_5");
 
         $game1 = new Game();
         $game1->setName("YAKUZA: LIKE A DRAGON");

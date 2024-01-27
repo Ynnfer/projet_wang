@@ -23,7 +23,7 @@ class DlcFixtures extends Fixture
         $detail->setDescription("Le Lot Costumes des légendes pour Yakuza: Like a Dragon inclut huit costumes de personnages emblématiques de la série Yakuza.");
         $detail->setPrice(1.99);
         $detail->setImage("https://cdn.cloudflare.steamstatic.com/steam/apps/1289211/ss_954cb10000dea9199951aaee77f891f79d3b1512.1920x1080.jpg?t=1624532748");
-        $dlc1->addDetail($detail);
+        $dlc1->setDetail($detail);
 
         $manager->persist($detail);
         $manager->persist($dlc1);
@@ -34,7 +34,7 @@ class DlcFixtures extends Fixture
         $detail->setDescription("Intégrez les rangs de la Commission de Recherche alors qu'elle se lance dans une aventure inoubliable au cœur du Givre éternel, une toundra enneigée qui abrite une horde de monstres légendaires.");
         $detail->setPrice(39.99);
         $detail->setImage("https://cdn.cloudflare.steamstatic.com/steam/apps/1118010/header.jpg?t=1702368891");
-        $dlc2->addDetail($detail);
+        $dlc2->setDetail($detail);
 
         $manager->persist($detail);
         $manager->persist($dlc2);
@@ -46,7 +46,7 @@ class DlcFixtures extends Fixture
         $detail->setDescription("Cet épisode est constitué de deux chapitres séparés de l'histoire principale de FINAL FANTASY VII REMAKE. Jouez Yuffie, une shinobi du Wutai qui s'infiltre à Midgar avec son partenaire grâce à l'aide de la branche principale d'Avalanche afin de dérober une matéria ultime créée par la Shinra.");
         $detail->setPrice(0);
         $detail->setImage("https://myviewscreen.files.wordpress.com/2022/01/ff7rintermission-1.jpg?w=1200");
-        $dlc3->addDetail($detail);
+        $dlc3->setDetail($detail);
 
         $manager->persist($detail);
         $manager->persist($dlc3);
@@ -57,11 +57,11 @@ class DlcFixtures extends Fixture
         $detail->setDescription("Le Lot Costumes des légendes pour Yakuza: Like a Dragon inclut huit costumes de personnages emblématiques de la série Yakuza.");
         $detail->setPrice(1.99);
         $detail->setImage("https://cdn.cloudflare.steamstatic.com/steam/apps/1289191/header.jpg?t=1614438562");
-        $dlc4->addDetail($detail);
+        $dlc4->setDetail($detail);
 
         $manager->persist($detail);
         $manager->persist($dlc4);
-       
+
         // Add references for later use in other fixtures
         $this->addReference(self::DLC_REFERENCE_1, $dlc1);
         $this->addReference(self::DLC_REFERENCE_2, $dlc2);

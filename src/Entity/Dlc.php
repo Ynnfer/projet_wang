@@ -58,7 +58,7 @@ class Dlc
         return $this;
     }
 
-    public function removeDetail():void
+    public function removeDetail(): void
     {
         $this->detail->removeDlc();
         $this->detail = null;
@@ -77,13 +77,13 @@ class Dlc
         $this->game = $game;
     }
 
-    public function removeGame():void
+    public function removeGame(): void
     {
         $this->game = null;
     }
 
-    public function getGameName(){
-       return $this->game ? $this->game->getName() : null;
+    public function getGameName()
+    {
+        return $this->game ? $this->game->getName() : null;
     }
-    
 }

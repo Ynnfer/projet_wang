@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ "newGame_page_title"|trans({}, 'table_page') }}
+{% block title %}
+	{{ "newGame_page_title"|trans({}, 'table_page') }}
 {% endblock %}
 
 {% block body %}
@@ -32,10 +33,12 @@
 		{{ form_row(form.detail.description) }}
 		{{ form_row(form.save, {'label': 'save_btn'|trans({}, 'table_page')}) }}
 		{{ form_end(form) }}
-		<a href="{{ path('game_list') }}" style="text-decoration: none;">
-			<button class="btn btn-outline-secondary" style="width:200px">
+
+		<button class="btn btn-outline-secondary" style="width:200px">
+			<a href="{{ path('game_list') }}" style="text-decoration: none;">
 				{{ "retour_btn"|trans({}, 'table_page') }}
-			</button>
-		</a>
+			</a>
+		</button>
+
 	</div>
 {% endblock %}

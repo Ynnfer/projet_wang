@@ -23,7 +23,7 @@ class GameController extends AbstractController
     }
 
     #[Route('/game/delete/{id}', name: 'delete_game', methods: ['POST'])]
-    public function delete($id, GameRepository $gameRepository, EntityManagerInterface $entityManager,TranslatorInterface $translator): Response
+    public function delete($id, GameRepository $gameRepository, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
     {
         $trans = $translator->trans('game_d_success');
 

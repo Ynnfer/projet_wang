@@ -20,13 +20,15 @@
 
 	<div id="form" class="row g-3 m-2">
 		{{ form_start(form) }}
-			{{ form_row(form.name, {'label': 'name_label'|trans({}, 'table_page')}) }}
-			{{ form_row(form.save, {'label': 'save_btn'|trans({}, 'table_page')}) }}
+		{{ form_row(form.name, {'label': 'name_label'|trans({}, 'table_page')}) }}
+		{{ form_row(form.save, {'label': 'save_btn'|trans({}, 'table_page')}) }}
 		{{ form_end(form) }}
-		<a href="{{ path('developer_list') }}" style="text-decoration: none;">
-			<button class="btn btn-outline-secondary" style="width:200px">
+
+		<button class="btn btn-outline-secondary" style="width:200px">
+			<a href="{{ path('developer_list') }}" style="text-decoration: none;">
 				{{ "retour_btn"|trans({}, 'table_page') }}
-			</button>
-		</a>
+			</a>
+		</button>
+
 	</div>
 {% endblock %}

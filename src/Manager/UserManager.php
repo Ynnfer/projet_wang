@@ -25,14 +25,8 @@ class UserManager
         $email = (new Email())
             ->from('nuoxi.wang1@projet.com')
             ->to($user->getEmail())
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
             ->subject("Succès de l'inscription")
-            ->text('Merci de votre inscription!')
-            // ->html('<p>See Twig integration for better HTML integration!</p>')
-            ;
+            ->text('Merci de votre inscription!');
         printf("OK");
         $mailer->send($email);
     }

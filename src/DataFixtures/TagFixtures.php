@@ -11,7 +11,7 @@ use App\Entity\Tag;
 
 class TagFixtures extends Fixture
 {
-    public const TAG_REFERENCE="tag";
+    public const TAG_REFERENCE = "tag";
 
     public function load(ObjectManager $manager): void
     {
@@ -23,7 +23,7 @@ class TagFixtures extends Fixture
             $tag = new Tag();
             $tag->setName($nomTag);
             $manager->persist($tag);
-            $this->addReference(self::TAG_REFERENCE. '_' . $nomTag, $tag);
+            $this->addReference(self::TAG_REFERENCE . '_' . $nomTag, $tag);
         }
 
         $manager->flush();

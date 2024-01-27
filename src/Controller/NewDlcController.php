@@ -16,7 +16,7 @@ use App\Entity\Detail;
 class NewDlcController extends AbstractController
 {
     #[Route('/dlc/create', name: 'create_dlc', methods: ['GET', 'POST'])]
-    public function index(Request $request, EntityManagerInterface $em,TranslatorInterface $translator): Response
+    public function index(Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
         $trans = $translator->trans('dlc_c_success');
 

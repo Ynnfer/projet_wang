@@ -32,13 +32,12 @@ class TagController extends AbstractController
 
         $entity = $tagRepository->find($id);
 
-        if(count($entity->getGames())){
+        if (count($entity->getGames())) {
             $this->addFlash('warning', $trans_w);
-        }
-        else{
+        } else {
             $em->remove($entity);
             $em->flush();
-            
+
             $this->addFlash('success', $trans_s);
         }
         return $this->redirectToRoute('tag_list');

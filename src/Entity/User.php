@@ -24,7 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
-    #[ORM\Column(type: 'string', length:"255")]
+    #[ORM\Column(type: 'string', length: "255")]
     private string $password;
 
     public function getId(): ?int

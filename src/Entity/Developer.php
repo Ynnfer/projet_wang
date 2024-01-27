@@ -53,7 +53,7 @@ class Developer
 
         return $this;
     }
-    
+
     public function removeGame(?Game $game): self
     {
         if ($this->games->contains($game)) {

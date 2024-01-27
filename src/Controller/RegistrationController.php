@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Event\UserCreatedEvent;
 use App\Form\RegistrationFormType;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class RegistrationController extends AbstractController
 {
@@ -32,7 +35,11 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+
+            // Déclencher un événement de création d'utilisateur et envoyer un e-mail
+            $dispatcher = new EventDispatcher();
+            $userCreatedEvent = new UserCreatedEvent($user);
+            $dispatcher->dispatch($userCreatedEvent, UserCreatedEvent::class);
 
             return $this->redirectToRoute('app_login');
         }
